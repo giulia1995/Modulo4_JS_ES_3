@@ -1,15 +1,19 @@
-const url= "https://api.pexels.com/v1/search?query=fashion"
-const token= "MqPq6wxr08MuaFvmjjHHHrax8KHsYSWqa8hOSUVEj6gwRuTque48ds4T"
+import {displayCards} from './components.js';
 
-fetch(url, 
-    headers: {
-      Authorization: "Bearer  token",
-     "Content-Type: "application/json"
-    
+const cards = document.querySelector(".row");
+
+fetch("https://api.pexels.com/v1/search?query=luxury", {
+  headers: {
+    authorization: "fleEjrFkHZgMxtSgwXjLcn8VDvBSo4xHjoQbCwIF42goR6dhhsdCATgm",
+  },
+})
+  .then((res) => res.json())
+  .then((data) => {
+    const items = data.photos;
+    items.map((item) => {
+    // renderizza qualcosa
+    cards.innerHTML +=  displayCards(item.src.tiny, item.alt)
+    })
+
   })
-    .then(res => res.json())
-      console.log(data);
-    .catch((error) {
-      console.log(error);
-    });
-  
+  .catch((error) => console.error(error));

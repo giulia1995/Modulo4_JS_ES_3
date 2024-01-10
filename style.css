@@ -1,0 +1,6 @@
+img .card-img-top{
+object-fit: cover !important;
+}
+#scale:hover {
+    transform: scale(1.05);
+}
